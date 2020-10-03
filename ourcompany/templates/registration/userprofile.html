@@ -1,0 +1,11 @@
+{% extends 'ourcompany/base.html' %}
+
+{% block content %}
+
+<h3>Nice-{{user.username}}.This is your profile</h3>
+
+<p>Welcome {{user.username}}</p>
+<p>Registered using this email-{{user.email}}</p>
+<img src="{{user.profile.image.url}}" alt="Profile image" width="100px">
+
+{% endblock %}

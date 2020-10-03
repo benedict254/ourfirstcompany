@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+  <center>
+		<div>
+			<a href="{% url 'past' %}">Past</a>
+			<a href="{% url 'latest' %}">Latest</a>
+			<a href="{% url 'upcoming' %}">Upcoming</a>
+			<a href="{% url 'workshops' %}">Workshops</a>
+			<a href="{% url 'meetups' %}">Meetups</a>
+		</div>
+
+	</center>
+	<br><br><br>
+
+
+	{% if event.paginator.num_pages > 1 %}
+	<div class="pagination">
+			{% if event.has_previous %}
+			 <a href="?page=1">First</a>
+			 <a href="?page={{event.previous_page_number}}">Previous</a>
+			 {% endif %}
+			 <span >{{event.number}}</span><span>of</span><span>{{event.paginator.num_pages}}</span>
+			 {% if event.has_next %}
+			 <a href="?page={{event.next_page_number}}">Next</a>
+			 <a href="?page={{event.paginator.num_pages}}">Last</a>
+			 {% endif %}
+	</div>
+	{% else %}
+	<h3>Not Yet Updated</h3>
+	{% endif %}
+
+
+	{% for events in event %}
+	<center style="border: 2">
+		{{events.title}}<br>
+		<img src="{{events.image.url}}" alt="" width="250px"><br>
+		{{events.description}}<br>
+		{{events.facilitator}}<br>
+		{{events.date_created}}<br>
+		{{events.venue}}<br>
+
+	</center>
+
+	{% endfor %}
+
+	{% if event.paginator.num_pages > 1 %}
+<div class="pagination">
+		{% if event.has_previous %}
+		 <a href="?page=1">First</a>
+		 <a href="?page={{event.previous_page_number}}">Previous</a>
+		 {% endif %}
+		 <span >{{event.number}}</span><span>of</span><span>{{event.paginator.num_pages}}</span>
+		 {% if event.has_next %}
+		 <a href="?page={{event.next_page_number}}">Next</a>
+		 <a href="?page={{event.paginator.num_pages}}">Last</a>
+		 {% endif %}
+</div>
+{% else %}
+<h3>Not Yet Updated</h3>
+{% endif %}
+
+	{% block content %}
+
+	{% endblock %}
+</body>
+</html>

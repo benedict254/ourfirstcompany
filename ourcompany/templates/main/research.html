@@ -1,0 +1,20 @@
+{% extends 'ourcompany/base.html' %}
+
+{% block content %}
+{% include 'main/_extendlearn.html' %}
+<h3>Hello {{user.username}}</h3>
+<h1>The dashboard Page</h1>
+
+<a href="">web community:
+	<select name="web community" id="">
+		<option value="Beginner">Beginner</option>
+		<option value="Intermediate">Intermediate</option>
+		<option value="Expert">Expert</option>
+	</select>
+</a>
+<a href="">cybersecurity</a>
+<a href="">Android</a>
+<a href="">Artificial Intelligence</a>
+
+
+{% endblock %}

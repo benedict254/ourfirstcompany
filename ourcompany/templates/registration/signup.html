@@ -1,0 +1,27 @@
+{% extends  'ourcompany/base.html' %}
+
+{% block content %}
+    <center>
+		{% if messages %}
+		{% for message in messages %}
+		<div style="margin-top:5rem;" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">{{ message }}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		{% endfor %}
+		{% endif %}
+
+			<form action="" method="POST">
+				 {% csrf_token %}
+				<input type="text" name="username" placeholder="Enter your name">
+				<input type="email" name="email" placeholder="Enter your email">
+				<input type="password" name="password1" placeholder="Enter your password">
+				<input type="password" name="password2" placeholder="Confirm your password">
+                <input type="submit">
+				<p>Have an account?<a href="{% url 'login' %}">Signin</a></p>
+	    </form>
+
+		</center>
+
+{% endblock %}
